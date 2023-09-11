@@ -7,8 +7,10 @@ import useApiCall from "@/hooks/useApiCall";
 import loginSchema from "@/schemas/loginSchema";
 import { useFormik } from "formik";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Login() {
+  const [isLogFailed, setIsLogFailed] = useState(false);
   const { resData, apiCall } = useApiCall();
   const { values, errors, touched, handleBlur, handleChange, handleSubmit, isSubmitting } = useFormik({
     initialValues: {
@@ -17,17 +19,29 @@ export default function Login() {
     },
     validationSchema: loginSchema,
     onSubmit: async (values, action) => {
+      setIsLogFailed(false);
       let url = environment.apiUrl + "login.php";
       let data = new FormData();
       Object.keys(values).forEach((key) => {
         data.append(key, values[key]);
       });
-      apiCall(url, data);
-      console.log(resData);
+      await apiCall(url, data);
       action.resetForm();
     },
   });
 
+  useEffect(() => {
+    try {
+      if (resData.login === "Failed") {
+        setIsLogFailed(true);
+      } else {
+        setIsLogFailed(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [resData]);
+  console.log("submitting is " + isSubmitting);
   return (
     <div className="bg-blue-300">
       <div className="container">
@@ -55,7 +69,8 @@ export default function Login() {
                       Login
                     </Button>
                   </div>
-
+                  <div className="text-center text-green-600">{isSubmitting && "Loggin..."}</div>
+                  <div className="text-red-600 italic text-center">{isLogFailed && "Wrong Username or Password"}</div>
                   <div className="flex justify-between items-center">
                     <h3 className="text-gray-600">Forgot Password?</h3>
 

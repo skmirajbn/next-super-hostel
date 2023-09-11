@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Lottie from "lottie-react";
 import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
-import Button from "./../components/button";
+import Button from "@/components/button";
 
 export default function Banner() {
   const [refHeading, inView] = useInView();
