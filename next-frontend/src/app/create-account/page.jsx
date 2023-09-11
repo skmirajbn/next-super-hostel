@@ -1,9 +1,9 @@
 "use client";
-import Button from "@/components/button";
 import MotionWrapScale from "@/components/motionWrap/motionWrapScale";
 import environment from "@/environment/environment";
 import useFormSubmit from "@/hooks/useFormSubmit";
 import Link from "next/link";
+import Button from "./../../components/button";
 
 function CreateAccount() {
   let apiUrl = environment.apiUrl + "users/createAccount.php";

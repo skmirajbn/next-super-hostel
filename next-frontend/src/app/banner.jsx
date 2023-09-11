@@ -1,10 +1,10 @@
 "use client";
 import dataJson from "@/assets/animations/ioLsJWnw2s.json";
-import Button from "@/components/button";
 import { motion } from "framer-motion";
 import Lottie from "lottie-react";
 import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
+import Button from "./../components/button";
 
 export default function Banner() {
   const [refHeading, inView] = useInView();
