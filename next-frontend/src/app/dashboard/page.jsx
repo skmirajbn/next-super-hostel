@@ -5,7 +5,7 @@ function DashboardSummary() {
         <div className="space-y-4 shadow-lg px-12 pb-12">
           <div className="flex justify-between">
             <h2 className="text-lg font-bold text-blue-950">
-              <i className="fa-solid fa-chart-simple"></i> Admin Summary +
+              <i className="fa-solid fa-chart-simple"></i> Admin Summary
             </h2>
           </div>
 
