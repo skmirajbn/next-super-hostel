@@ -1,10 +1,10 @@
-import Accommodation from "@/components/pages/Home/Accommodation";
-import Banner from "@/components/pages/Home/Banner";
-import BedsWeProvide from "@/components/pages/Home/BedsWeProvide";
-import ContactSectin from "@/components/pages/Home/ContactSectin";
-import MediaCoverage from "@/components/pages/Home/MediaCoverage";
-import OurBranches from "@/components/pages/Home/OurBranches";
-import Services from "@/components/pages/Home/Services";
+import Accommodation from "@/components/pages/Home/accommodation";
+import Banner from "@/components/pages/Home/banner";
+import BedsWeProvide from "@/components/pages/Home/bedsWeProvide";
+import ContactSectin from "@/components/pages/Home/contactSectin";
+import MediaCoverage from "@/components/pages/Home/mediaCoverage";
+import OurBranches from "@/components/pages/Home/ourBranches";
+import Services from "@/components/pages/Home/services";
 
 export default function Home() {
   return (

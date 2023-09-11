@@ -1,6 +1,6 @@
 "use client";
 import dataJson from "@/assets/animations/ioLsJWnw2s.json";
-import Button from "@/components/Button";
+import Button from "@/components/button";
 import { motion } from "framer-motion";
 import Lottie from "lottie-react";
 import { useEffect, useRef } from "react";

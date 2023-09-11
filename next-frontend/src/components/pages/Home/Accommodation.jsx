@@ -1,7 +1,8 @@
 "use client";
-import Heading from "@/components/Heading";
-import MotionWrapDown from "@/components/motionWrap/MotionWrapDown";
-import MotionWrapScale from "@/components/motionWrap/MotionWrapScale";
+
+import Heading from "@/components/heading";
+import MotionWrapDown from "@/components/motionWrap/motionWrapDown";
+import MotionWrapScale from "@/components/motionWrap/motionWrapScale";
 import Image from "next/image";
 
 export default function Accommodation() {
@@ -17,7 +18,7 @@ export default function Accommodation() {
             </div>
           </MotionWrapDown>
           <MotionWrapScale>
-            <Image width={3680} height={2456} className="rounded-lg" src="/img/Accommodation.jpg" alt="" />
+            <Image className="rounded-lg" width={1000} height={1000} quality={60} src="/img/Accommodation.jpg" alt="" />
           </MotionWrapScale>
         </div>
       </div>

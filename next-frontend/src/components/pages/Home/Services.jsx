@@ -7,10 +7,10 @@ import security from "@/assets/animations/security.json";
 import swimming from "@/assets/animations/swimming.json";
 import washingMachine from "@/assets/animations/washing-machine.json";
 import wifi from "@/assets/animations/wifi.json";
-import Button from "@/components/Button";
-import Heading from "@/components/Heading";
-import MotionWrapDown from "@/components/motionWrap/MotionWrapDown";
-import MotionWrapUp from "@/components/motionWrap/MotionWrapUp";
+import Button from "@/components/button";
+import Heading from "@/components/heading";
+import MotionWrapDown from "@/components/motionWrap/motionWrapDown";
+import MotionWrapUp from "@/components/motionWrap/motionWrapUp";
 import Lottie from "lottie-react";
 import Link from "next/link";
 

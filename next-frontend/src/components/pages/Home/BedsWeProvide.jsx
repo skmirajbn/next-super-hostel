@@ -1,6 +1,6 @@
 "use client";
-import Button from "@/components/Button";
-import Heading from "@/components/Heading";
+import Button from "@/components/button";
+import Heading from "@/components/heading";
 import MotionWrapLeft from "@/components/motionWrap/MotionWrapLeft";
 import MotionWrapRight from "@/components/motionWrap/MotionWrapRight";
 

@@ -1,7 +1,7 @@
 "use client";
-import Button from "@/components/Button";
-import Heading from "@/components/Heading";
-import MotionWrapScale from "@/components/motionWrap/MotionWrapScale";
+import Button from "@/components/button";
+import Heading from "@/components/heading";
+import MotionWrapScale from "@/components/motionWrap/motionWrapScale";
 
 export default function OurBranches() {
   return (

@@ -1,6 +1,6 @@
 "use client";
-import Heading from "@/components/Heading";
-import MotionWrapScale from "@/components/motionWrap/MotionWrapScale";
+import Heading from "@/components/heading";
+import MotionWrapScale from "@/components/motionWrap/motionWrapScale";
 
 function ContactSectin() {
   return (

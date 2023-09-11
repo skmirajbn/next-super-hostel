@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 "use client";
-import Button from "@/components/Button";
-import MotionWrapScale from "@/components/motionWrap/MotionWrapScale";
+import Button from "@/components/button";
+import MotionWrapScale from "@/components/motionWrap/motionWrapScale";
 import environment from "@/environment/environment";
 import useApiCall from "@/hooks/useApiCall";
 import loginSchema from "@/schemas/loginSchema";
