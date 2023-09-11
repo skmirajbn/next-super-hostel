@@ -1,0 +1,17 @@
+{
+  "name": "student/server",
+  "autoload": {
+    "psr-4": {
+      "Student\\Server\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Sk Mira",
+      "email": "skmirajbn@gmail.com"
+    }
+  ],
+  "require": {
+    "firebase/php-jwt": "^6.8"
+  }
+}
