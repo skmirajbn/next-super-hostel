@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Button from "./../../components/button";
-import MotionWrapScale from './../../components/motionWrap/motionWrapScale';
+import MotionWrapScale from "./../../components/motionWrap/motionWrapScale";
 
 /* eslint-disable react/no-unescaped-entities */
 function BookBranch() {
@@ -31,7 +31,7 @@ function BookBranch() {
                   </Link>
                 </div>
               </div>
-            </MotionWrapSca>
+            </MotionWrapScale>
             {/* Single Branch */}
             <MotionWrapScale>
               <div className="space-y-2">
