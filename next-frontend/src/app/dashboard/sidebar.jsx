@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 
 function Sidebar() {
@@ -20,17 +19,17 @@ function Sidebar() {
           <div className="collapse collapse-arrow overflow-visible grid-rows-[35px_0fr]">
             <input type="radio" name="my-accordion-2" />
             <div className="collapse-title text-xl font-medium text-black bg-gray-100 px-12">
-              <i className="fa-solid fa-users inline-block pr-2"></i> Members
+              <i className="fa-solid fa-users inline-block pr-2"></i> Users
             </div>
             <div className="collapse-content bg-gray-200 space-y-5 pt-6 px-0 text-black">
-              <Link href="/dashboard/member-add" className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link">
-                <i className="fa-solid fa-user-plus inline-block pr-2"></i> Member Add
+              <Link href="/dashboard/user-add" className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link">
+                <i className="fa-solid fa-user-plus inline-block pr-2"></i> User Add
               </Link>
-              <Link href="/dashboard/member-view" className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link">
-                <i className="fa-solid fa-eye inline-block pr-2"></i> View Member
+              <Link href="/dashboard/user-view" className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link">
+                <i className="fa-solid fa-eye inline-block pr-2"></i> View User
               </Link>
               <a className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link" href="#">
-                <i className="fa-solid fa-trash-can-arrow-up inline-block pr-2"></i> Restore Memeber
+                <i className="fa-solid fa-trash-can-arrow-up inline-block pr-2"></i> Restore User
               </a>
             </div>
           </div>
