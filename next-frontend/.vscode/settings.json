@@ -1,8 +1,9 @@
 {
+  "files.exclude": {
+    "**/.next": true
+  },
   "search.exclude": {
-    // "**/node_modules": true,
-    "**/bower_components": true,
-    "**/builds": true,
     "**/.next": true
   }
+  
 }

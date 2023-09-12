@@ -3,7 +3,11 @@ import { useState } from "react";
 const useApiCall = () => {
   const [resData, setResData] = useState(null);
   const apiCall = async (url, formData) => {
-    await axios.post(url, formData).then((response) => {
+    let token = null;
+    if (localStorage.getItem("token") != "" && localStorage.getItem("token") != null) {
+      token = localStorage.getItem("token");
+    }
+    await axios.post(url, formData, { token: token }).then((response) => {
       setResData(response.data);
     });
   };

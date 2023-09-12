@@ -10,7 +10,6 @@ const userAddSchema = Yup.object({
   nid: Yup.string().matches(nidRegex, "NID must be 13 Digits or 17 Digits").required("Please Enter you nid"),
   role: Yup.string().required("Please Select role"),
   image: Yup.mixed()
-    .required("Please Select an image")
     .test("isImage", "File must be jpg or png or webp", (filePath) => {
       if (!filePath) return true; // If no file is selected, don't check type
       const acceptedImageTypes = ["jpg", "png", "webp"]; // Add more image types as needed

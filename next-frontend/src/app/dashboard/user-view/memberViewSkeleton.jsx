@@ -22,6 +22,9 @@ function MemberViewSkeleton({ count }) {
           <div className="bg-slate-400 animate-pulse h-6 block rounded-lg mx-5"></div>
         </td>
         <td className="text-center py-4">
+          <div className="bg-slate-400 animate-pulse h-6 block rounded-lg mx-5"></div>
+        </td>
+        <td className="text-center py-4">
           <div className="bg-slate-400 animate-pulse h-12 w-12 block rounded-full mx-auto"></div>
         </td>
         <td className="text-center py-4">

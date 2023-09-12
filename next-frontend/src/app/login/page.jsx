@@ -7,9 +7,11 @@ import useApiCall from "@/hooks/useApiCall";
 import loginSchema from "@/schemas/loginSchema";
 import { useFormik } from "formik";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Login() {
+  const router = useRouter();
   const [isLogFailed, setIsLogFailed] = useState(false);
   const { resData, apiCall } = useApiCall();
   const { values, errors, touched, handleBlur, handleChange, handleSubmit, isSubmitting } = useFormik({
@@ -36,9 +38,12 @@ export default function Login() {
         setIsLogFailed(true);
       } else {
         setIsLogFailed(false);
+        localStorage.setItem("token", resData.token);
+        router.push("/dashboard");
+        console.log("login success");
       }
     } catch (error) {
-      console.log(error);
+      console.log("catch error is" + error);
     }
   }, [resData]);
   console.log("submitting is " + isSubmitting);

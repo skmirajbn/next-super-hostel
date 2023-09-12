@@ -1,0 +1,9 @@
+{
+    "files.exclude": {
+      "**/next-frontend/.next": true
+    },
+    "search.exclude": {
+      "**/next-frontend/.next": true
+    }
+    
+  }

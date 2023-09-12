@@ -10,6 +10,6 @@ const usePhotoRender = () => {
     };
     reader.readAsDataURL(file);
   };
-  return [photoUrl, handlePhotoRender];
+  return [photoUrl,setPhotoUrl, handlePhotoRender];
 };
 export default usePhotoRender;
