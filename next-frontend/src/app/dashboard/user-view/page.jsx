@@ -13,7 +13,6 @@ function MemberView() {
   const { data, isLoading } = useQuery({ queryKey: ["userView"], queryFn: () => getDataApi(environment.apiUrl + "users/getUsers.php", {}) });
   const { resData, apiCall } = useApiCall();
   useEffect(() => {
-    console.log("qurey data " + data);
     console.log("loading is " + isLoading);
     // apiCall(environment.apiUrl + "users/getUsers.php", {});
   }, [data, isLoading]);
@@ -40,7 +39,7 @@ function MemberView() {
             </tr>
           </thead>
           <tbody>
-            {data === null ? (
+            {data === undefined ? (
               <MemberViewSkeleton count={10} />
             ) : (
               data &&

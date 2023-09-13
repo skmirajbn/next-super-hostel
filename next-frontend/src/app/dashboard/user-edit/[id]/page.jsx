@@ -1,17 +1,25 @@
 "use client";
 
 import environment from "@/environment/environment";
+import getDataApi from "@/hooks/getDataApi";
 import useApiCall from "@/hooks/useApiCall";
 import usePhotoRender from "@/hooks/usePhotoRender";
 import userAddSchema from "@/schemas/userAddSchema";
+import { useQuery } from "@tanstack/react-query";
 import { useFormik } from "formik";
-import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
-function MemberAdd() {
+function MemberEdit({ params }) {
   const photoInputRef = useRef();
   const { resData, apiCall } = useApiCall();
   const [photoUrl, setPhotoUrl, handlePhotoRender] = usePhotoRender();
+  const formData = new FormData();
+  formData.append("id", params.id);
+  const { data, isLoading } = useQuery({ queryKey: ["user-edit"], queryFn: () => getDataApi(environment.apiUrl + "users/getSingleUser.php", formData) });
+  useState(() => {
+    console.log(data);
+    console.log("loading is " + isLoading);
+  }, [data, isLoading]);
   const { values, errors, touched, handleBlur, handleChange, handleSubmit, isSubmitting } = useFormik({
     initialValues: {
       name: "",
@@ -48,7 +56,7 @@ function MemberAdd() {
   return (
     <div className="text-gray-700 space-y-6 lg:px-20">
       <h3 className="text-2xl font-medium">
-        User Add <i className="fa-solid fa-user-plus"></i>
+        User Edit <i className="fa-solid fa-user-plus"></i>
       </h3>
       <form className="space-y-10" onSubmit={handleSubmit}>
         <div className="flex space-x-6">
@@ -135,4 +143,4 @@ function MemberAdd() {
   );
 }
 
-export default MemberAdd;
+export default MemberEdit;

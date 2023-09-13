@@ -10,6 +10,7 @@ const getDataApi = (url, formData) => {
   };
   console.log("api is calling");
   return axios.post(url, formData, { headers }).then((response) => {
+    console.log(response.data);
     return response.data;
   });
 };
