@@ -1,15 +1,16 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import environment from "@/environment/environment";
 import getDataApi from "@/hooks/getDataApi";
 import useApiCall from "@/hooks/useApiCall";
-import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useEffect } from "react";
-import { useQuery } from "react-query";
 import MemberViewSkeleton from "./memberViewSkeleton";
 
 function MemberView() {
-  const { data, isLoading } = useQuery("userView", () => getDataApi(environment.apiUrl + "users/getUsers.php", {}));
+  // const { data, isLoading } = useQuery("userView", () => getDataApi(environment.apiUrl + "users/getUsers.php", {}));
+  const { data, isLoading } = useQuery({ queryKey: ["userView"], queryFn: () => getDataApi(environment.apiUrl + "users/getUsers.php", {}) });
   const { resData, apiCall } = useApiCall();
   useEffect(() => {
     console.log("qurey data " + data);
@@ -52,7 +53,7 @@ function MemberView() {
                   <td className="text-center py-4">{user.user_role}</td>
                   <td className="text-center py-4">{user.user_phone}</td>
                   <td className="text-center py-4">
-                    <Image height={50} width={50} className="w-12 h-12 object-cover rounded-full mx-auto" src={environment.imageUrl + user.user_photo} alt="" />
+                    <img className="w-12 h-12 object-cover rounded-full mx-auto" src={environment.imageUrl + user.user_photo} alt="" />
                   </td>
                   <td className="text-center py-4">
                     <Link href={"/dashboard/user-edit/" + "1"}>
