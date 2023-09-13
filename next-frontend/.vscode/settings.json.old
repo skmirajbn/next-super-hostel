@@ -5,5 +5,4 @@
   "search.exclude": {
     "**/.next": true
   }
-  
 }

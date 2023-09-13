@@ -1,17 +1,21 @@
 "use client";
-import { isLoggedIn } from "@/hooks/logout";
-import MemberViewSkeleton from "./memberViewSkeleton";
-import useIsLoggedIn from "@/hooks/useIsLoggedIn";
-import useApiCall from "@/hooks/useApiCall";
-import { Suspense, useEffect } from "react";
 import environment from "@/environment/environment";
-import axios from "axios";
+import getDataApi from "@/hooks/getDataApi";
+import useApiCall from "@/hooks/useApiCall";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect } from "react";
+import { useQuery } from "react-query";
+import MemberViewSkeleton from "./memberViewSkeleton";
 
-async function MemberView() {
+function MemberView() {
+  const { data, isLoading } = useQuery("userView", () => getDataApi(environment.apiUrl + "users/getUsers.php", {}));
   const { resData, apiCall } = useApiCall();
   useEffect(() => {
-    apiCall(environment.apiUrl + "users/getUsers.php", {});
-  }, []);
+    console.log("qurey data " + data);
+    console.log("loading is " + isLoading);
+    // apiCall(environment.apiUrl + "users/getUsers.php", {});
+  }, [data, isLoading]);
   return (
     <div className="space-y-4 bg-white my-6 py-6 px-12 rounded-md shadow-lg">
       <div className="flex justify-between">
@@ -35,12 +39,12 @@ async function MemberView() {
             </tr>
           </thead>
           <tbody>
-            {resData === null ? (
+            {data === null ? (
               <MemberViewSkeleton count={10} />
             ) : (
-              resData &&
-              resData.map((user) => (
-                <tr id={user.user_id}>
+              data &&
+              data.map((user) => (
+                <tr key={user.user_id}>
                   <td className="text-center py-4">{user.user_id}</td>
                   <td className="text-center py-4">{user.user_name}</td>
                   <td className="text-center py-4">{user.user_username}</td>
@@ -48,12 +52,12 @@ async function MemberView() {
                   <td className="text-center py-4">{user.user_role}</td>
                   <td className="text-center py-4">{user.user_phone}</td>
                   <td className="text-center py-4">
-                    <img className="w-12 h-12 object-cover rounded-full mx-auto" src={environment.imageUrl + user.user_photo} alt="" />
+                    <Image height={50} width={50} className="w-12 h-12 object-cover rounded-full mx-auto" src={environment.imageUrl + user.user_photo} alt="" />
                   </td>
                   <td className="text-center py-4">
-                    <a>
+                    <Link href={"/dashboard/user-edit/" + "1"}>
                       <i className="fa-solid fa-pen-to-square pr-2 text-green-600"></i>
-                    </a>{" "}
+                    </Link>
                     | <i className="fa-solid fa-trash pl-2 text-red-600"></i>
                   </td>
                 </tr>
