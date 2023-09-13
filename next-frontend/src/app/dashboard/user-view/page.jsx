@@ -3,15 +3,15 @@ import { isLoggedIn } from "@/hooks/logout";
 import MemberViewSkeleton from "./memberViewSkeleton";
 import useIsLoggedIn from "@/hooks/useIsLoggedIn";
 import useApiCall from "@/hooks/useApiCall";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import environment from "@/environment/environment";
+import axios from "axios";
 
-function MemberView() {
+async function MemberView() {
   const { resData, apiCall } = useApiCall();
   useEffect(() => {
     apiCall(environment.apiUrl + "users/getUsers.php", {});
-  });
-  console.log(resData);
+  }, []);
   return (
     <div className="space-y-4 bg-white my-6 py-6 px-12 rounded-md shadow-lg">
       <div className="flex justify-between">
@@ -35,75 +35,30 @@ function MemberView() {
             </tr>
           </thead>
           <tbody>
-            {/* {isLoading && <MemberViewSkeleton count={10} />} */}
-            <tr>
-              <td className="text-center py-4">46</td>
-              <td className="text-center py-4">Rakibul Islam</td>
-              <td className="text-center py-4">rakib</td>
-              <td className="text-center py-4">rakib@gmail.com</td>
-              <td className="text-center py-4">Admin</td>
-              <td className="text-center py-4">Admin</td>
-              <td className="text-center py-4">
-                <img className="w-12 h-12 object-cover rounded-full mx-auto" src="\img\avatar-1.jpg" alt="" />
-              </td>
-              <td className="text-center py-4">
-                <a>
-                  <i className="fa-solid fa-pen-to-square pr-2 text-green-600"></i>
-                </a>{" "}
-                | <i className="fa-solid fa-trash pl-2 text-red-600"></i>
-              </td>
-            </tr>
-            <tr>
-              <td className="text-center py-4">46</td>
-              <td className="text-center py-4">Rakibul Islam</td>
-              <td className="text-center py-4">rakib</td>
-              <td className="text-center py-4">rakib@gmail.com</td>
-              <td className="text-center py-4">Admin</td>
-              <td className="text-center py-4">Admin</td>
-              <td className="text-center py-4">
-                <img className="w-12 h-12 object-cover rounded-full mx-auto" src="\img\avatar-1.jpg" alt="" />
-              </td>
-              <td className="text-center py-4">
-                <a>
-                  <i className="fa-solid fa-pen-to-square pr-2 text-green-600"></i>
-                </a>{" "}
-                | <i className="fa-solid fa-trash pl-2 text-red-600"></i>
-              </td>
-            </tr>
-            <tr>
-              <td className="text-center py-4">46</td>
-              <td className="text-center py-4">Rakibul Islam</td>
-              <td className="text-center py-4">rakib</td>
-              <td className="text-center py-4">rakib@gmail.com</td>
-              <td className="text-center py-4">Admin</td>
-              <td className="text-center py-4">Admin</td>
-              <td className="text-center py-4">
-                <img className="w-12 h-12 object-cover rounded-full mx-auto" src="\img\avatar-1.jpg" alt="" />
-              </td>
-              <td className="text-center py-4">
-                <a>
-                  <i className="fa-solid fa-pen-to-square pr-2 text-green-600"></i>
-                </a>{" "}
-                | <i className="fa-solid fa-trash pl-2 text-red-600"></i>
-              </td>
-            </tr>
-            <tr>
-              <td className="text-center py-4">46</td>
-              <td className="text-center py-4">Rakibul Islam</td>
-              <td className="text-center py-4">rakib</td>
-              <td className="text-center py-4">rakib@gmail.com</td>
-              <td className="text-center py-4">Admin</td>
-              <td className="text-center py-4">Admin</td>
-              <td className="text-center py-4">
-                <img className="w-12 h-12 object-cover rounded-full mx-auto" src="\img\avatar-1.jpg" alt="" />
-              </td>
-              <td className="text-center py-4">
-                <a>
-                  <i className="fa-solid fa-pen-to-square pr-2 text-green-600"></i>
-                </a>{" "}
-                | <i className="fa-solid fa-trash pl-2 text-red-600"></i>
-              </td>
-            </tr>
+            {resData === null ? (
+              <MemberViewSkeleton count={10} />
+            ) : (
+              resData &&
+              resData.map((user) => (
+                <tr id={user.user_id}>
+                  <td className="text-center py-4">{user.user_id}</td>
+                  <td className="text-center py-4">{user.user_name}</td>
+                  <td className="text-center py-4">{user.user_username}</td>
+                  <td className="text-center py-4">{user.user_email}</td>
+                  <td className="text-center py-4">{user.user_role}</td>
+                  <td className="text-center py-4">{user.user_phone}</td>
+                  <td className="text-center py-4">
+                    <img className="w-12 h-12 object-cover rounded-full mx-auto" src={environment.imageUrl + user.user_photo} alt="" />
+                  </td>
+                  <td className="text-center py-4">
+                    <a>
+                      <i className="fa-solid fa-pen-to-square pr-2 text-green-600"></i>
+                    </a>{" "}
+                    | <i className="fa-solid fa-trash pl-2 text-red-600"></i>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

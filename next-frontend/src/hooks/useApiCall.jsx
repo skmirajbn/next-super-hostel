@@ -7,7 +7,10 @@ const useApiCall = () => {
     if (localStorage.getItem("token") != "" && localStorage.getItem("token") != null) {
       token = localStorage.getItem("token");
     }
-    await axios.post(url, formData, { token: token }).then((response) => {
+    let headers = {
+      token: token,
+    };
+    await axios.post(url, formData, { headers }).then((response) => {
       setResData(response.data);
     });
   };
