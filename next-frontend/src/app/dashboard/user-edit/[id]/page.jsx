@@ -9,6 +9,7 @@ import userAddSchema from "@/schemas/userAddSchema";
 import { useQuery } from "@tanstack/react-query";
 import { useFormik } from "formik";
 import { useEffect, useRef } from "react";
+import MemberEditLoading from "./loading";
 
 function MemberEdit({ params }) {
   const formData = new FormData();
@@ -37,7 +38,7 @@ function MemberEdit({ params }) {
       phone: data?.user_phone,
       nid: data?.user_nid,
       password: data?.user_password,
-      confirmPassword: "",
+      confirmPassword: data?.user_password,
       role: data?.role_id,
       image: "",
     },
@@ -63,12 +64,11 @@ function MemberEdit({ params }) {
     },
   });
 
-  return (
+  return !isLoading ? (
     <div className="text-gray-700 space-y-6 lg:px-20">
       <h3 className="text-2xl font-medium">
         User Edit <i className="fa-solid fa-user-plus"></i>
       </h3>
-      {isLoading && <h3 className="text-4xl">Loading...</h3>}
       {data && (
         <form className="space-y-10" onSubmit={handleSubmit}>
           <div className="flex space-x-6">
@@ -152,6 +152,8 @@ function MemberEdit({ params }) {
         </form>
       )}
     </div>
+  ) : (
+    <MemberEditLoading />
   );
 }
 
