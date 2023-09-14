@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const getDataApi = (url, formData) => {
+const getDataApi = async (url, formData) => {
   let token = null;
   if (localStorage.getItem("token") != "" && localStorage.getItem("token") != null) {
     token = localStorage.getItem("token");
@@ -9,7 +9,7 @@ const getDataApi = (url, formData) => {
     token: token,
   };
   console.log("api is calling");
-  return axios.post(url, formData, { headers }).then((response) => {
+  return await axios.post(url, formData, { headers }).then((response) => {
     console.log(response.data);
     return response.data;
   });

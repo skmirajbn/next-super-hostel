@@ -2,7 +2,6 @@
 "use client";
 import environment from "@/environment/environment";
 import getDataApi from "@/hooks/getDataApi";
-import useApiCall from "@/hooks/useApiCall";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useEffect } from "react";
@@ -10,8 +9,10 @@ import MemberViewSkeleton from "./memberViewSkeleton";
 
 function MemberView() {
   // const { data, isLoading } = useQuery("userView", () => getDataApi(environment.apiUrl + "users/getUsers.php", {}));
-  const { data, isLoading } = useQuery({ queryKey: ["userView"], queryFn: () => getDataApi(environment.apiUrl + "users/getUsers.php", {}) });
-  const { resData, apiCall } = useApiCall();
+  const { data, isLoading } = useQuery({
+    queryKey: ["userView"],
+    queryFn: () => getDataApi(environment.apiUrl + "users/getUsers.php", {}),
+  });
   useEffect(() => {
     console.log("loading is " + isLoading);
     // apiCall(environment.apiUrl + "users/getUsers.php", {});

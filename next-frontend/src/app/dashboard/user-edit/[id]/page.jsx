@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import environment from "@/environment/environment";
@@ -10,20 +11,24 @@ import { useFormik } from "formik";
 import { useRef, useState } from "react";
 
 function MemberEdit({ params }) {
+  const formData = new FormData();
+  formData.append("id", params.id);
+  const { data, isLoading } = useQuery({
+    queryKey: ["userEdit"],
+    queryFn: () => getDataApi(environment.apiUrl + "users/getSingleUser.php", formData),
+  });
   const photoInputRef = useRef();
   const { resData, apiCall } = useApiCall();
   const [photoUrl, setPhotoUrl, handlePhotoRender] = usePhotoRender();
-  const formData = new FormData();
-  formData.append("id", params.id);
-  const { data, isLoading } = useQuery({ queryKey: ["user-edit"], queryFn: () => getDataApi(environment.apiUrl + "users/getSingleUser.php", formData) });
+
   useState(() => {
     console.log(data);
     console.log("loading is " + isLoading);
   }, [data, isLoading]);
   const { values, errors, touched, handleBlur, handleChange, handleSubmit, isSubmitting } = useFormik({
     initialValues: {
-      name: "",
-      email: "",
+      name: data?.name,
+      email: "skmiraj",
       username: "",
       phone: "",
       nid: "",
@@ -102,9 +107,7 @@ function MemberEdit({ params }) {
               <label className="text-lg">Role :</label>
               {touched.role && <div className="text-red-600 italic">{errors.role}</div>}
               <select className="text-lg" name="role" onChange={handleChange} onBlur={handleBlur} value={values.role}>
-                <option selected value="">
-                  Select Role
-                </option>
+                <option value="">Select Role</option>
                 <option value="1">Admin</option>
                 <option value="2">Member</option>
                 <option value="2">Auditor</option>
