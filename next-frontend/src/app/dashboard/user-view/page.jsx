@@ -56,7 +56,7 @@ function MemberView() {
                     <img className="w-12 h-12 object-cover rounded-full mx-auto" src={environment.imageUrl + user.user_photo} alt="" />
                   </td>
                   <td className="text-center py-4">
-                    <Link href={"/dashboard/user-edit/" + "1"}>
+                    <Link href={"/dashboard/user-edit/" + user.user_id}>
                       <i className="fa-solid fa-pen-to-square pr-2 text-green-600"></i>
                     </Link>
                     | <i className="fa-solid fa-trash pl-2 text-red-600"></i>
