@@ -6,7 +6,7 @@ const getDataApi = async (url, formData) => {
     token = localStorage.getItem("token");
   }
   let headers = {
-    token: token,
+    Token: token,
   };
   console.log("api is calling");
   return await axios.post(url, formData, { headers }).then((response) => {

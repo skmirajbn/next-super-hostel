@@ -8,7 +8,7 @@ const useApiCall = () => {
       token = localStorage.getItem("token");
     }
     let headers = {
-      token: token,
+      Token: token,
     };
     await axios.post(url, formData, { headers }).then((response) => {
       setResData(response.data);

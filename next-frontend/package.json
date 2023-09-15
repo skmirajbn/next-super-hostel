@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "start http://localhost:3000 && next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 1001",
     "lint": "next lint",
     "serverDev": "node server.js"
   },

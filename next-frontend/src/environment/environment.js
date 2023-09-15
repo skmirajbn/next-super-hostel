@@ -3,8 +3,8 @@ const environment = {
   imageUrl: "http://localhost/Nextjs%20Projects/next-project-idb/server/img/",
 };
 // const environment = {
-//   apiUrl: "http://server.skmiraj.online/nextsuperhostelidb/api/",
-//   imageUrl: "http://server.skmiraj.online/nextsuperhostelidb/img/",
+//   apiUrl: "https://server.skmiraj.online/nextsuperhostelidb/api/",
+//   imageUrl: "https://server.skmiraj.online/nextsuperhostelidb/img/",
 // };
 
 export default environment;
