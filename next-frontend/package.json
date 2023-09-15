@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "http://reactsuperhostelidb.skmiraj.online",
   "scripts": {
-    "dev": "start http://localhost:3000 && next dev",
+    "dev": "start http://localhost:1001 && next dev -p 1001",
     "build": "next build",
     "start": "next start -p 1001",
     "lint": "next lint",
