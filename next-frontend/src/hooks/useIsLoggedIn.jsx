@@ -1,15 +1,16 @@
-"use client"
+"use client";
+import environment from "@/environment/environment";
 import axios from "axios";
 import { useEffect, useState } from "react";
 const useIsLoggedIn = () => {
   const [isLoggedIn, setisLoggedIn] = useState(true);
 
-  useEffect(()=>{
-    if (localStorage.getItem("token") !=null && localStorage.getItem("token")!='') {
+  useEffect(() => {
+    if (localStorage.getItem("token") != null && localStorage.getItem("token") != "") {
       let token = localStorage.getItem("token");
       let data = new FormData();
-      data.append("token", token);
-      axios.post("http://localhost/Nextjs%20Projects/next-project-idb/server/api/tokenValidation.php", data).then((response) => {
+      data.append("Token", token);
+      axios.post(environment.apiUrl + "tokenValidation.php", data).then((response) => {
         if (response.data === "invalid") {
           setisLoggedIn(false);
         } else {
@@ -19,7 +20,7 @@ const useIsLoggedIn = () => {
     } else {
       setisLoggedIn(false);
     }
-  },[])
+  }, []);
 
   return { isLoggedIn };
 };

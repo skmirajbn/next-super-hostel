@@ -2,11 +2,13 @@
   "name": "nextjs-learning",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://reactsuperhostelidb.skmiraj.online",
   "scripts": {
     "dev": "start http://localhost:3000 && next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "serverDev": "node server.js"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.35.3",

@@ -8,8 +8,8 @@ header("Access-Control-Allow-Origin: *");
 // Allow specific HTTP methods (e.g., GET, POST, PUT)
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 
-if (isset($_POST['token'])) {
-    $token = $_POST['token'];
+if (isset($_POST['Token'])) {
+    $token = $_POST['Token'];
     try {
         if (Auth::validateToken($token)) {
             echo "valid";

@@ -18,8 +18,8 @@ function isTokenValid($token) {
 
 }
 
-if (isset($_Headers['token'])) {
-    $token = $_Headers['token'];
+if (isset($_Headers['Token'])) {
+    $token = $_Headers['Token'];
     if (isTokenValid($token)) {
         if (isset($_POST['id'])) {
             $id = $_POST['id'];
@@ -44,8 +44,8 @@ if (isset($_Headers['token'])) {
 // require_once('./../tokenValidateApi.php');
 // $_Headers = getallheaders();
 
-// if (isset($_Headers['token'])) {
-//     $token = $_Headers['token'];
+// if (isset($_Headers['Token'])) {
+//     $token = $_Headers['Token'];
 //     if (isTokenValid($token)) {
 //         // api code
 //     } else {

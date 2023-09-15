@@ -29,7 +29,7 @@ if (isset($_POST['username'])) {
 
         $userData = array(
             'login' => 'Success',
-            'token' => $token,
+            'Token' => $token,
             'role_id' => $role_id,
             'user_id' => $user_id,
             'user_photo' => $user_photo,
