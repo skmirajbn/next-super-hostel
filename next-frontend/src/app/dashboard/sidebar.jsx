@@ -22,10 +22,10 @@ function Sidebar() {
               <i className="fa-solid fa-users inline-block pr-2"></i> Users
             </div>
             <div className="collapse-content bg-gray-200 space-y-5 pt-6 px-0 text-black">
-              <Link href="/dashboard/user-add" className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link">
+              <Link href="/dashboard/users/user-add" className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link">
                 <i className="fa-solid fa-user-plus inline-block pr-2"></i> User Add
               </Link>
-              <Link href="/dashboard/user-view" className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link">
+              <Link href="/dashboard/users/user-view" className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link">
                 <i className="fa-solid fa-eye inline-block pr-2"></i> View User
               </Link>
               <a className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link" href="#">
@@ -39,12 +39,12 @@ function Sidebar() {
               <i className="fa-solid fa-briefcase inline-block pr-2"></i> Rooms
             </div>
             <div className="collapse-content bg-gray-200 space-y-5 pt-6 px-0 text-black">
-              <a className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link" href="#">
+              <Link href="/dashboard/rooms/add-room" className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link">
                 <i className="fa-solid fa-plus inline-block pr-2"></i> Add Room
-              </a>
-              <a className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link" href="#">
+              </Link>
+              <Link href="/dashboard/rooms/view-rooms" className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link" href="#">
                 <i className="fa-solid fa-eye inline-block pr-2"></i> View Rooms
-              </a>
+              </Link>
               <a className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link" href="#">
                 <i className="fa-solid fa-trash-can-arrow-up inline-block pr-2"></i> Restore Room
               </a>

@@ -27,22 +27,22 @@ function Header() {
             <Link href="/" className={path === "/" ? active : ""} style={transition}>
               Home
             </Link>
-            <Link href="about" className={path === "/about" ? active : ""} style={transition}>
+            <Link href="/about" className={path === "/about" ? active : ""} style={transition}>
               About Us
             </Link>
-            <Link href="social" className={path === "/social" ? active : ""} style={transition}>
+            <Link href="/social" className={path === "/social" ? active : ""} style={transition}>
               Social
             </Link>
-            <Link href="blog" className={path === "/blog" ? active : ""} style={transition}>
+            <Link href="/blog" className={path === "/blog" ? active : ""} style={transition}>
               Blog
             </Link>
-            <Link href="contact" className={path === "/contact" ? active : ""} style={transition}>
+            <Link href="/contact" className={path === "/contact" ? active : ""} style={transition}>
               Contact
             </Link>
-            <Link href="team" className={path === "/team" ? active : ""} style={transition}>
+            <Link href="/team" className={path === "/team" ? active : ""} style={transition}>
               Our Team
             </Link>
-            <Link href="login" className={path === "/login" ? active : ""} style={transition}>
+            <Link href="/login" className={path === "/login" ? active : ""} style={transition}>
               Login
             </Link>
             <div className="inline-block">
