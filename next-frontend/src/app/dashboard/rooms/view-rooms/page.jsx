@@ -6,6 +6,7 @@ import useApiCall from "@/hooks/useApiCall";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import RoomsLoading from "./roomsLoading";
 function MemberView() {
   // const { data, isLoading } = useQuery("userView", () => getDataApi(environment.apiUrl + "users/getUsers.php", {}));
   const { resData, apiCall } = useApiCall();
@@ -22,7 +23,7 @@ function MemberView() {
     setIsFetching(true);
     let formData = new FormData();
     formData.append("id", id);
-    await apiCall(environment.apiUrl + "users/deleteUser.php", formData);
+    await apiCall(environment.apiUrl + "rooms/deleteRoom.php", formData);
     await refetch();
     setIsFetching(false);
   };
@@ -46,7 +47,9 @@ function MemberView() {
             </tr>
           </thead>
           <tbody>
+            {isLoading || (isFetching && <RoomsLoading />)}
             {data &&
+              !isFetching &&
               data.map((room) => (
                 <tr key="">
                   <td className="text-center py-4">{room.room_id}</td>
@@ -55,10 +58,10 @@ function MemberView() {
                   <td className="text-center py-4">{room.room_id}</td>
 
                   <td className="text-center py-4">
-                    <Link href="">
+                    <Link href={"/dashboard/rooms/edit-room/" + room.room_id}>
                       <i className="fa-solid fa-pen-to-square pr-2 text-green-600"></i>
                     </Link>
-                    | <i className="fa-solid fa-trash pl-2 text-red-600"></i>
+                    | <i className="fa-solid fa-trash pl-2 text-red-600" onClick={() => handleDelete(room.room_id)}></i>
                   </td>
                 </tr>
               ))}
