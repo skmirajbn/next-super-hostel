@@ -6,7 +6,7 @@ import useApiCall from "@/hooks/useApiCall";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import RoomsLoading from "./roomsLoading";
+import RoomsLoading from "./seatsLoading";
 function ViewSeat() {
   // const { data, isLoading } = useQuery("userView", () => getDataApi(environment.apiUrl + "users/getUsers.php", {}));
   const { resData, apiCall } = useApiCall();
