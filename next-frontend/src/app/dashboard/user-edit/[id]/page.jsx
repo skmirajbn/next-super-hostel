@@ -8,10 +8,12 @@ import usePhotoRender from "@/hooks/usePhotoRender";
 import userAddSchema from "@/schemas/userAddSchema";
 import { useQuery } from "@tanstack/react-query";
 import { useFormik } from "formik";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 import MemberEditLoading from "./loading";
 
 function MemberEdit({ params }) {
+  const router = useRouter();
   const formData = new FormData();
   formData.append("id", params.id);
   const {
@@ -34,18 +36,19 @@ function MemberEdit({ params }) {
     initialValues: {
       name: data?.user_name,
       email: data?.user_email,
-      username: data?.user_name,
+      username: data?.user_username,
       phone: data?.user_phone,
       nid: data?.user_nid,
       password: data?.user_password,
       confirmPassword: data?.user_password,
       role: data?.role_id,
       image: "",
+      id: params.id,
     },
     enableReinitialize: true,
     validationSchema: userAddSchema,
     onSubmit: async (values, action) => {
-      let url = environment.apiUrl + "users/createUser.php";
+      let url = environment.apiUrl + "users/updateUsers.php";
       console.log(values);
       let data = new FormData();
       Object.keys(values).forEach((key) => {
@@ -57,6 +60,9 @@ function MemberEdit({ params }) {
         data.append("image", file);
       }
       await apiCall(url, data);
+      setTimeout(() => {
+        router.push("/dashboard/user-view");
+      }, 1000);
       console.log(data);
       console.log(resData);
       // action.resetForm();
@@ -145,7 +151,7 @@ function MemberEdit({ params }) {
           <h2 className="text-center text-2xl text-green-700"> </h2>
           <h2 className="text-center text-2xl text-green-700"></h2>
           <button type="submit" className="block mx-auto bg-blue-500 text-white py-2 px-4 rounded-md">
-            <i className="fa-solid fa-plus"></i> Add User
+            <i className="fa-solid fa-plus"></i> Update User
           </button>
           {isSubmitting && <h3 className="text-green-600 text-center">Submitting...</h3>}
           <h3 className="text-green-600 text-center">{resData}</h3>
