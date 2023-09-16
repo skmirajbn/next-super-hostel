@@ -42,7 +42,7 @@ function Sidebar() {
               <Link href="/dashboard/rooms/add-room" className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link">
                 <i className="fa-solid fa-plus inline-block pr-2"></i> Add Room
               </Link>
-              <Link href="/dashboard/rooms/view-rooms" className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link" href="#">
+              <Link href="/dashboard/rooms/view-rooms" className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link">
                 <i className="fa-solid fa-eye inline-block pr-2"></i> View Rooms
               </Link>
               <a className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link" href="#">

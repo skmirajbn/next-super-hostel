@@ -4,15 +4,15 @@ import environment from "@/environment/environment";
 import useApiCall from "@/hooks/useApiCall";
 import { useFormik } from "formik";
 
-function addRoom() {
+function AddRoom() {
   const { resData, apiCall } = useApiCall();
   const { values, errors, touched, handleBlur, handleChange, handleSubmit, isSubmitting } = useFormik({
     initialValues: {
-      roomId: "",
+      roomCode: "",
       branchId: "",
     },
     onSubmit: async (values, action) => {
-      let url = environment.apiUrl + "users/createRoom.php";
+      let url = environment.apiUrl + "rooms/createRoom.php";
       console.log(values);
       let data = new FormData();
       Object.keys(values).forEach((key) => {
@@ -21,6 +21,7 @@ function addRoom() {
       await apiCall(url, data);
       console.log(data);
       console.log(resData);
+      action.resetForm();
       // action.resetForm();
       // setPhotoUrl('')
     },
@@ -37,18 +38,16 @@ function addRoom() {
             <label className="text-lg">Select Branch</label>
             {touched.branchId && <div className="text-red-600 italic">{errors.branchId}</div>}
             <select className="text-lg" name="branchId" onChange={handleChange} onBlur={handleBlur} value={values.branchId}>
-              <option selected value="">
-                Select Role
-              </option>
+              <option value="">Select Role</option>
               <option value="1">Dhanmondi</option>
               <option value="2">Mohammadpur</option>
-              <option value="2">Motijheel</option>
+              <option value="3">Motijheel</option>
             </select>
           </div>
           <div className="flex flex-col space-y-2">
             <label className="text-lg">Room Code (ID) :</label>
-            {touched.roomId && <div className="text-red-600 italic">{errors.roomId}</div>}
-            <input className="border-2 border-blue-200 px-2 rounded-md py-2" style={errors.roomId && touched.roomId && { border: "1px solid red" }} type="text" placeholder="Enter Your Name" name="roomId" onChange={handleChange} onBlur={handleBlur} value={values.roomId} />
+            {touched.roomCode && <div className="text-red-600 italic">{errors.roomCode}</div>}
+            <input className="border-2 border-blue-200 px-2 rounded-md py-2" style={errors.roomCode && touched.roomCode && { border: "1px solid red" }} type="text" placeholder="Enter Your Name" name="roomCode" onChange={handleChange} onBlur={handleBlur} value={values.roomCode} />
           </div>
         </div>
         <h2 className="text-center text-2xl text-green-700"> </h2>
@@ -63,4 +62,4 @@ function addRoom() {
   );
 }
 
-export default addRoom;
+export default AddRoom;
