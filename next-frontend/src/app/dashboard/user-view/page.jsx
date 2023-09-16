@@ -2,14 +2,17 @@
 "use client";
 import environment from "@/environment/environment";
 import getDataApi from "@/hooks/getDataApi";
+import useApiCall from "@/hooks/useApiCall";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import MemberViewSkeleton from "./memberViewSkeleton";
 
 function MemberView() {
   // const { data, isLoading } = useQuery("userView", () => getDataApi(environment.apiUrl + "users/getUsers.php", {}));
-  const { data, isLoading } = useQuery({
+  const { resData, apiCall } = useApiCall();
+  const [isFetching, setIsFetching] = useState(false);
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ["userView"],
     queryFn: () => getDataApi(environment.apiUrl + "users/getUsers.php", {}),
   });
@@ -17,6 +20,14 @@ function MemberView() {
     console.log("loading is " + isLoading);
     // apiCall(environment.apiUrl + "users/getUsers.php", {});
   }, [data, isLoading]);
+  const handleDelete = async (id) => {
+    setIsFetching(true);
+    let formData = new FormData();
+    formData.append("id", id);
+    await apiCall(environment.apiUrl + "users/deleteUser.php", formData);
+    await refetch();
+    setIsFetching(false);
+  };
   return (
     <div className="space-y-4 bg-white my-6 py-6 px-12 rounded-md shadow-lg">
       <div className="flex justify-between">
@@ -40,7 +51,7 @@ function MemberView() {
             </tr>
           </thead>
           <tbody>
-            {data === undefined ? (
+            {isLoading || isFetching ? (
               <MemberViewSkeleton count={10} />
             ) : (
               data &&
@@ -59,7 +70,7 @@ function MemberView() {
                     <Link href={"/dashboard/user-edit/" + user.user_id}>
                       <i className="fa-solid fa-pen-to-square pr-2 text-green-600"></i>
                     </Link>
-                    | <i className="fa-solid fa-trash pl-2 text-red-600"></i>
+                    | <i className="fa-solid fa-trash pl-2 text-red-600" onClick={() => handleDelete(user.user_id)}></i>
                   </td>
                 </tr>
               ))
