@@ -1,4 +1,6 @@
-function EditSeatLoading() {
+"use client";
+
+function BedLoading({ params }) {
   return (
     <div className="text-gray-700 space-y-6 lg:px-20">
       <h3 className="text-2xl font-medium">
@@ -30,4 +32,4 @@ function EditSeatLoading() {
   );
 }
 
-export default EditSeatLoading;
+export default BedLoading;

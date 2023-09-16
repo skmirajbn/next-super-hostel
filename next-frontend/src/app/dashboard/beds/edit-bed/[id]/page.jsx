@@ -8,7 +8,7 @@ import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
 import EditRoomLoading from "./editSeatLoading";
 
-function EditSeat({ params }) {
+function EditBed({ params }) {
   const router = useRouter();
   const { resData, apiCall } = useApiCall();
   let formData = new FormData();
@@ -79,4 +79,4 @@ function EditSeat({ params }) {
   );
 }
 
-export default EditSeat;
+export default EditBed;

@@ -1,4 +1,4 @@
-function SeatsLoading() {
+function BedLoading() {
   return Array.from({ length: 10 }, () => ({})).map((row, index) => (
     <tr key="">
       <td className="text-center py-4">
@@ -21,4 +21,4 @@ function SeatsLoading() {
   ));
 }
 
-export default SeatsLoading;
+export default BedLoading;

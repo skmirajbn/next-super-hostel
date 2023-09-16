@@ -56,15 +56,15 @@ function Sidebar() {
               <i className="fa-solid fa-folder-tree inline-block pr-2"></i> Seats
             </div>
             <div className="collapse-content bg-gray-200 space-y-5 pt-6 px-0 text-black">
-              <a className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link" href="#">
-                <i className="fa-solid fa-plus inline-block pr-2"></i> Add Seat
-              </a>
-              <a className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link" href="#">
-                <i className="fa-solid fa-eye inline-block pr-2"></i> View Seats
-              </a>
-              <a className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link" href="#">
-                <i className="fa-solid fa-trash-can-arrow-up inline-block pr-2"></i> Restore Seat
-              </a>
+              <Link href="/dashboard/beds/add-bed" className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link">
+                <i className="fa-solid fa-plus inline-block pr-2"></i> Add Bed
+              </Link>
+              <Link href="/dashboard/beds/view-bed" className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link">
+                <i className="fa-solid fa-eye inline-block pr-2"></i> View Beds
+              </Link>
+              <Link href="/dashboard/beds/restore-bed" className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link" h>
+                <i className="fa-solid fa-trash-can-arrow-up inline-block pr-2"></i> Restore Bed
+              </Link>
             </div>
           </div>
           <div className="collapse collapse-arrow overflow-visible grid-rows-[35px_0fr]">

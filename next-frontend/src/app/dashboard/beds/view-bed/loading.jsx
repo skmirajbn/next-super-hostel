@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-function SeatLoading() {
+function BedLoading() {
   return (
     <div className="space-y-4 bg-white my-6 py-6 px-12 rounded-md shadow-lg">
       <div className="flex justify-between">
@@ -48,4 +48,4 @@ function SeatLoading() {
   );
 }
 
-export default SeatLoading;
+export default BedLoading;

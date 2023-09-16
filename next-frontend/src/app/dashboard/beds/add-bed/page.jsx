@@ -4,7 +4,7 @@ import environment from "@/environment/environment";
 import useApiCall from "@/hooks/useApiCall";
 import { useFormik } from "formik";
 
-function AddSeat() {
+function AddBed() {
   const { resData, apiCall } = useApiCall();
   const { values, errors, touched, handleBlur, handleChange, handleSubmit, isSubmitting } = useFormik({
     initialValues: {
@@ -30,7 +30,7 @@ function AddSeat() {
   return (
     <div className="text-gray-700 space-y-6 lg:px-20">
       <h3 className="text-2xl font-medium">
-        Room Add <i className="fa-solid fa-person-shelter"></i>
+        Room Seat <i className="fa-solid fa-person-shelter"></i>
       </h3>
       <form className="space-y-10" onSubmit={handleSubmit}>
         <div className="flex flex-col space-y-6">
@@ -62,4 +62,4 @@ function AddSeat() {
   );
 }
 
-export default AddSeat;
+export default AddBed;

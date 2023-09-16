@@ -1,6 +1,4 @@
-"use client";
-
-function EditRoom({ params }) {
+function EditBedLoading() {
   return (
     <div className="text-gray-700 space-y-6 lg:px-20">
       <h3 className="text-2xl font-medium">
@@ -32,4 +30,4 @@ function EditRoom({ params }) {
   );
 }
 
-export default EditRoom;
+export default EditBedLoading;
