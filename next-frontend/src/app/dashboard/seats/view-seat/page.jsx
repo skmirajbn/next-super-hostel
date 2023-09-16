@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import RoomsLoading from "./roomsLoading";
-function ViewRooms() {
+function ViewSeat() {
   // const { data, isLoading } = useQuery("userView", () => getDataApi(environment.apiUrl + "users/getUsers.php", {}));
   const { resData, apiCall } = useApiCall();
   const [isFetching, setIsFetching] = useState(false);
@@ -72,4 +72,4 @@ function ViewRooms() {
   );
 }
 
-export default ViewRooms;
+export default ViewSeat;
