@@ -2,18 +2,33 @@
 "use client";
 
 import environment from "@/environment/environment";
+import getDataApi from "@/hooks/getDataApi";
 import useApiCall from "@/hooks/useApiCall";
+import { useQuery } from "@tanstack/react-query";
 import { useFormik } from "formik";
 
 function AddBed() {
+  const { data, isLoading, refetch, isFetching } = useQuery({
+    queryKey: ["viewRoom"],
+    queryFn: () => getDataApi(environment.apiUrl + "rooms/getAllRooms.php", {}),
+  });
+  const {
+    data: dataBedType,
+    isLoading: isBedTypeLoading,
+    error: bedTypeError,
+  } = useQuery({
+    queryKey: ["bedType"],
+    queryFn: () => getDataApi(environment.apiUrl + "bedType/getAllBedType.php", {}),
+  });
   const { resData, apiCall } = useApiCall();
   const { values, errors, touched, handleBlur, handleChange, handleSubmit, isSubmitting } = useFormik({
     initialValues: {
-      roomCode: "",
-      branchId: "",
+      roomId: "",
+      bedTypeId: "",
+      bedCode: "",
     },
     onSubmit: async (values, action) => {
-      let url = environment.apiUrl + "rooms/createRoom.php";
+      let url = environment.apiUrl + "beds/createBed.php";
       console.log(values);
       let data = new FormData();
       Object.keys(values).forEach((key) => {
@@ -23,8 +38,6 @@ function AddBed() {
       console.log(data);
       console.log(resData);
       action.resetForm();
-      // action.resetForm();
-      // setPhotoUrl('')
     },
   });
 
@@ -36,29 +49,34 @@ function AddBed() {
       <form className="space-y-10" onSubmit={handleSubmit}>
         <div className="flex flex-col space-y-6">
           <div className="flex flex-col space-y-2">
-            <label className="text-lg">Bed's Room:</label>
-            {touched.branchId && <div className="text-red-600 italic">{errors.branchId}</div>}
-            <select className="text-lg border-2 border-blue-200 py-2 rounded-md" name="branchId" onChange={handleChange} onBlur={handleBlur} value={values.bedId}>
+            <label className="text-lg">Room:</label>
+            {touched.roomId && <div className="text-red-600 italic">{errors.roomId}</div>}
+            <select className="text-lg border-2 border-blue-200 py-2 rounded-md px-2" name="roomId" onChange={handleChange} onBlur={handleBlur} value={values.roomId}>
               <option value="">Select Room</option>
-              <option value="1">A230</option>
-              <option value="2">A230</option>
-              <option value="3">A230</option>
+              {data?.map((room) => (
+                <option value={room.room_id} key={room.room_id}>
+                  {room.room_code}
+                </option>
+              ))}
             </select>
           </div>
           <div className="flex flex-col space-y-2">
             <label className="text-lg">Bed Type:</label>
-            {touched.branchId && <div className="text-red-600 italic">{errors.branchId}</div>}
-            <select className="text-lg border-2 border-blue-200 py-2 rounded-md" name="branchId" onChange={handleChange} onBlur={handleBlur} value={values.branchId}>
+            {touched.bedTypeId && <div className="text-red-600 italic">{errors.bedTypeId}</div>}
+            <select className="text-lg border-2 border-blue-200 py-2 rounded-md px-2" name="bedTypeId" onChange={handleChange} onBlur={handleBlur} value={values.bedTypeId}>
               <option value="">Select Bed Type</option>
-              <option value="1">Business</option>
-              <option value="2">Standard</option>
-              <option value="3">Economy</option>
+              {dataBedType &&
+                dataBedType.map((type) => (
+                  <option key={type.bed_type_id} value={type.bed_type_id}>
+                    {type.bed_type_name}
+                  </option>
+                ))}
             </select>
           </div>
           <div className="flex flex-col space-y-2">
             <label className="text-lg">Bed Code (ID) :</label>
-            {touched.roomCode && <div className="text-red-600 italic">{errors.roomCode}</div>}
-            <input className="border-2 border-blue-200 px-2 rounded-md py-2" style={errors.roomCode && touched.roomCode && { border: "1px solid red" }} type="text" placeholder="Enter Bed Code" name="roomCode" onChange={handleChange} onBlur={handleBlur} value={values.roomCode} />
+            {touched.bedCode && <div className="text-red-600 italic">{errors.bedCode}</div>}
+            <input className="border-2 border-blue-200 px-2 rounded-md py-2" style={errors.bedCode && touched.bedCode && { border: "1px solid red" }} type="text" placeholder="Enter Bed Code" name="bedCode" onChange={handleChange} onBlur={handleBlur} value={values.bedCode} />
           </div>
         </div>
         <h2 className="text-center text-2xl text-green-700"> </h2>

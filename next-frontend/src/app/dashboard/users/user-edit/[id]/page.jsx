@@ -65,8 +65,6 @@ function MemberEdit({ params }) {
       }, 1000);
       console.log(data);
       console.log(resData);
-      // action.resetForm();
-      // setPhotoUrl('')
     },
   });
 

@@ -53,7 +53,7 @@ function Sidebar() {
           <div className="collapse collapse-arrow overflow-visible grid-rows-[35px_0fr]">
             <input type="radio" name="my-accordion-2" />
             <div className="collapse-title text-xl font-medium text-black bg-gray-100 px-12">
-              <i className="fa-solid fa-folder-tree inline-block pr-2"></i> Seats
+              <i className="fa-solid fa-folder-tree inline-block pr-2"></i> Beds
             </div>
             <div className="collapse-content bg-gray-200 space-y-5 pt-6 px-0 text-black">
               <Link href="/dashboard/beds/add-bed" className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link">
