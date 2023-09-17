@@ -3,7 +3,7 @@
 import Link from "next/link";
 
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import FadeIn from "./motionWrap/fadeIn";
 import MotionWrapScale from "./motionWrap/motionWrapScale";
 
@@ -14,15 +14,10 @@ function Header() {
     router.push("/login");
   };
   const [token, setToken] = useState();
-  const useLocalStorage = (key) => {
-    return useMemo(() => {
-      return localStorage.getItem(key);
-    });
-  };
-  token = useLocalStorage("token");
+
   useEffect(() => {
-    setToken(token);
-  }, [token]);
+    setToken(localStorage.getItem("token"));
+  });
   const path = usePathname();
   console.log("pathname is: " + path);
   const transition = {
