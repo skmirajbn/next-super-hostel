@@ -3,8 +3,11 @@
 import environment from "@/environment/environment";
 import useApiCall from "@/hooks/useApiCall";
 import { useFormik } from "formik";
+import { useRef, useState } from "react";
 
 function AddBranch() {
+  const [imgUrl, setImgUrl] = useState(null);
+  const imageInput = useRef();
   const { resData, apiCall } = useApiCall();
   const { values, errors, touched, handleBlur, handleChange, handleSubmit, isSubmitting } = useFormik({
     initialValues: {
@@ -18,6 +21,9 @@ function AddBranch() {
       Object.keys(values).forEach((key) => {
         data.append(key, values[key]);
       });
+      if (imageInput.current.files[0]) {
+        data.append("photo", imageInput.current.files[0]);
+      }
       await apiCall(url, data);
       console.log(data);
       console.log(resData);
@@ -26,6 +32,15 @@ function AddBranch() {
       // setPhotoUrl('')
     },
   });
+  const handlePhotoChange = (e) => {
+    let file = e.target.files[0];
+    let reader = new FileReader();
+    reader.onload = (e) => {
+      setImgUrl(e.target.result);
+      console.log(e.target.result);
+    };
+    reader.readAsDataURL(file);
+  };
 
   return (
     <div className="text-gray-700 space-y-6 lg:px-20">
@@ -35,19 +50,19 @@ function AddBranch() {
       <form className="space-y-10" onSubmit={handleSubmit}>
         <div className="flex flex-col space-y-6">
           <div className="flex flex-col space-y-2">
-            <label className="text-lg">Select Branch</label>
-            {touched.branchId && <div className="text-red-600 italic">{errors.branchId}</div>}
-            <select className="text-lg" name="branchId" onChange={handleChange} onBlur={handleBlur} value={values.branchId}>
-              <option value="">Select Role</option>
-              <option value="1">Dhanmondi</option>
-              <option value="2">Mohammadpur</option>
-              <option value="3">Motijheel</option>
-            </select>
+            <label className="text-lg">Branch Name :</label>
+            {touched.branchName && <div className="text-red-600 italic">{errors.branchName}</div>}
+            <input className="border-2 border-blue-200 px-2 rounded-md py-2" style={errors.branchName && touched.branchName && { border: "1px solid red" }} type="text" placeholder="Enter Branch Name" name="branchName" onChange={handleChange} onBlur={handleBlur} value={values.branchName} />
           </div>
           <div className="flex flex-col space-y-2">
-            <label className="text-lg">Room Code (ID) :</label>
-            {touched.roomCode && <div className="text-red-600 italic">{errors.roomCode}</div>}
-            <input className="border-2 border-blue-200 px-2 rounded-md py-2" style={errors.roomCode && touched.roomCode && { border: "1px solid red" }} type="text" placeholder="Enter Your Name" name="roomCode" onChange={handleChange} onBlur={handleBlur} value={values.roomCode} />
+            <label className="text-lg">Branch Address:</label>
+            {touched.branchAddress && <div className="text-red-600 italic">{errors.branchAddress}</div>}
+            <input className="border-2 border-blue-200 px-2 rounded-md py-2" style={errors.branchAddress && touched.branchAddress && { border: "1px solid red" }} type="text" placeholder="Enter Branch Address" name="branchAddress" onChange={handleChange} onBlur={handleBlur} value={values.branchAddress} />
+          </div>
+          <div className="flex flex-col space-y-2">
+            <label className="text-lg">Branch Image:</label>
+            <input className="border-2 border-blue-200 px-2 rounded-md py-2" type="file" placeholder="Enter Branch Address" name="roomCode" onChange={handlePhotoChange} ref={imageInput} />
+            <img className="w-40 rounded-md" src={imgUrl} alt="" />
           </div>
         </div>
         <h2 className="text-center text-2xl text-green-700"> </h2>
