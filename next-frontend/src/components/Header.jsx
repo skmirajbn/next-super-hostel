@@ -1,11 +1,28 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import Link from "next/link";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
 import FadeIn from "./motionWrap/fadeIn";
 import MotionWrapScale from "./motionWrap/motionWrapScale";
 
 function Header() {
+  const router = useRouter();
+  const logOut = () => {
+    localStorage.removeItem("token");
+    router.push("/login");
+  };
+  const [token, setToken] = useState();
+  const useLocalStorage = (key) => {
+    return useMemo(() => {
+      return localStorage.getItem(key);
+    });
+  };
+  token = useLocalStorage("token");
+  useEffect(() => {
+    setToken(token);
+  }, [token]);
   const path = usePathname();
   console.log("pathname is: " + path);
   const transition = {
@@ -13,6 +30,7 @@ function Header() {
     transitionDuration: "200ms",
   };
   const active = "text-cyan-600 font-bold inline-block bg-white px-4 leading-8 rounded-full";
+  const inActive = "bg-[#38bdf8] inline-block leading-8 px-4 rounded-full";
   return (
     <div className="bg-[#279EFF] text-white py-4">
       <FadeIn>
@@ -42,9 +60,18 @@ function Header() {
             <Link href="/team" className={path === "/team" ? active : ""} style={transition}>
               Our Team
             </Link>
-            <Link href="/login" className={path === "/login" ? active : ""} style={transition}>
-              Login
-            </Link>
+            {!token && (
+              <Link href="/login" className={path === "/login" ? active : inActive} style={transition}>
+                Login <i class="fa-solid fa-chevron-right"></i>
+              </Link>
+            )}
+            {token && (
+              <span className="inline-block bg-red-500 px-4 rounded-full leading-8 cursor-pointer" onClick={logOut}>
+                <span href="/login" style={transition}>
+                  <i className="fa-solid fa-right-from-bracket"></i> Logout
+                </span>
+              </span>
+            )}
             <div className="inline-block">
               <MotionWrapScale>
                 <Link className="bg-orange-500 py-[6px] px-6 rounded-full" href="/branch">

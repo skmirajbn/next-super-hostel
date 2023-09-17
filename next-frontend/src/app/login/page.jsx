@@ -45,7 +45,10 @@ export default function Login() {
     } catch (error) {
       console.log("catch error is" + error);
     }
-  }, [resData]);
+    if (localStorage.getItem("token")) {
+      router.push("/dashboard");
+    }
+  }, [resData, router]);
   console.log("submitting is " + isSubmitting);
   return (
     <div className="bg-blue-300">
