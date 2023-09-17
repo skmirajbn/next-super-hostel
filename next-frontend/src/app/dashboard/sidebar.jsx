@@ -74,13 +74,13 @@ function Sidebar() {
             </div>
             <div className="collapse-content bg-gray-200 space-y-5 pt-6 px-0 text-black">
               <a className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link" href="#">
-                <i className="fa-solid fa-plus inline-block pr-2"></i> কোম্পানি যোগ
+                <i className="fa-solid fa-plus inline-block pr-2"></i> Add Branch
               </a>
               <a className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link" href="#">
-                <i className="fa-solid fa-eye inline-block pr-2"></i> কোম্পানি দেখুন
+                <i className="fa-solid fa-eye inline-block pr-2"></i> View Branches
               </a>
               <a className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link" href="#">
-                <i className="fa-solid fa-trash-can-arrow-up inline-block pr-2"></i> কোম্পানি রিস্টোর
+                <i className="fa-solid fa-trash-can-arrow-up inline-block pr-2"></i> Restore Branch
               </a>
             </div>
           </div>
