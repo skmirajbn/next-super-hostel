@@ -55,7 +55,7 @@ function ViewBranch() {
                   <td className="text-center py-4">{branch.branch_name}</td>
                   <td className="text-center py-4">{branch.branch_address}</td>
                   <td className="text-center py-4">
-                    {branch.branh_iamge && <img src={environment.imageUrl + branch.image} alt="Branch Image" />}
+                    {branch.branch_image && <img className="w-12 h-12 object-cover rounded-full mx-auto" src={environment.imageUrl + branch.branch_image} alt="Branch Image" />}
                     {!branch.branch_image && <i className="fa-solid fa-tree-city"></i>}
                   </td>
 

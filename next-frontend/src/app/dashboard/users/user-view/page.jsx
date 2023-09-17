@@ -61,7 +61,7 @@ function MemberView() {
                   <td className="text-center py-4">{user.user_name}</td>
                   <td className="text-center py-4">{user.user_username}</td>
                   <td className="text-center py-4">{user.user_email}</td>
-                  <td className="text-center py-4">{user.user_role}</td>
+                  <td className="text-center py-4">{user.role_name}</td>
                   <td className="text-center py-4">{user.user_phone}</td>
                   <td className="text-center py-4">
                     <img className="w-12 h-12 object-cover rounded-full mx-auto" src={environment.imageUrl + user.user_photo} alt="" />

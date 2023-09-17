@@ -21,7 +21,7 @@ function AddBranch() {
         data.append(key, values[key]);
       });
       if (imageInput.current.files[0]) {
-        data.append("photo", imageInput.current.files[0]);
+        data.append("image", imageInput.current.files[0]);
       }
       console.log(data);
       await apiCall(url, data);
