@@ -60,7 +60,7 @@ function ViewBranch() {
                   </td>
 
                   <td className="text-center py-4">
-                    <Link href={"/dashboard/rooms/edit-room/" + branch.branch_id}>
+                    <Link href={"/dashboard/branches/edit-branch/" + branch.branch_id}>
                       <i className="fa-solid fa-pen-to-square pr-2 text-green-600"></i>
                     </Link>
                     | <i className="fa-solid fa-trash pl-2 text-red-600" onClick={() => handleDelete(branch.branch_id)}></i>
