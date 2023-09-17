@@ -40,7 +40,7 @@ if (isset($_Headers['Token'])) {
             }
             $query = $con->query($sql);
             if ($query) {
-                echo "Branch Created Successfully";
+                echo "Branch Updated Successfully";
             }
         } else {
             echo "Please input all the required field";

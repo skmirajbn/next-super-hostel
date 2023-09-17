@@ -1,21 +1,31 @@
 "use client";
 
 import environment from "@/environment/environment";
+import getDataApi from "@/hooks/getDataApi";
 import useApiCall from "@/hooks/useApiCall";
+import { useQuery } from "@tanstack/react-query";
 import { useFormik } from "formik";
 import { useRef, useState } from "react";
 
-function updateBranch() {
+function UpdateBranch({ params }) {
+  let idData = new FormData();
+  idData.append("id", params.id);
+  const { data, isLoading } = useQuery({
+    queryKey: ["singleBranch", params.id],
+    queryFn: () => getDataApi(environment.apiUrl + "branches/getSingleBranch.php", idData),
+  });
   const [imgUrl, setImgUrl] = useState(null);
   const imageInput = useRef();
   const { resData, apiCall } = useApiCall();
   const { values, errors, touched, handleBlur, handleChange, handleSubmit, isSubmitting } = useFormik({
     initialValues: {
-      roomCode: "",
-      branchId: "",
+      branchName: data?.branch_name,
+      branchAddress: data?.branch_address,
+      id: params.id,
     },
+    enableReinitialize: true,
     onSubmit: async (values, action) => {
-      let url = environment.apiUrl + "branches/createBranch.php";
+      let url = environment.apiUrl + "branches/updateBranch.php";
       let data = new FormData();
       Object.keys(values).forEach((key) => {
         data.append(key, values[key]);
@@ -40,11 +50,10 @@ function updateBranch() {
     };
     reader.readAsDataURL(file);
   };
-
   return (
     <div className="text-gray-700 space-y-6 lg:px-20">
       <h3 className="text-2xl font-medium">
-        Branch Add <i className="fa-solid fa-code-branch"></i>
+        Branch Update <i className="fa-solid fa-code-branch"></i>
       </h3>
       <form className="space-y-10" onSubmit={handleSubmit}>
         <div className="flex flex-col space-y-6">
@@ -62,6 +71,7 @@ function updateBranch() {
             <label className="text-lg">Branch Image:</label>
             <input className="border-2 border-blue-200 px-2 rounded-md py-2" type="file" placeholder="Enter Branch Address" name="roomCode" onChange={handlePhotoChange} ref={imageInput} />
             <img className="w-40 rounded-md" src={imgUrl} alt="" />
+            {data?.branch_image && !imgUrl && <img className="w-40 rounded-md" src={environment.imageUrl + data.branch_image} alt="" />}
           </div>
         </div>
         <h2 className="text-center text-2xl text-green-700"> </h2>
@@ -76,4 +86,4 @@ function updateBranch() {
   );
 }
 
-export default updateBranch;
+export default UpdateBranch;
