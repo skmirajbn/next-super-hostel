@@ -13,7 +13,7 @@ function ViewBed() {
   const [isFetching, setIsFetching] = useState(false);
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["userView"],
-    queryFn: () => getDataApi(environment.apiUrl + "rooms/getAllRooms.php", {}),
+    queryFn: () => getDataApi(environment.apiUrl + "beds/getAllBeds.php", {}),
   });
   useEffect(() => {
     console.log("loading is " + isLoading);
@@ -40,9 +40,9 @@ function ViewBed() {
           <thead className="bg-gray-200">
             <tr>
               <th className="py-4 px-3">ID</th>
-              <th className="py-4">Room code</th>
+              <th className="py-4">Bed code</th>
               <th className="py-4">Branch Name</th>
-              <th className="py-4">Branch Code</th>
+              <th className="py-4">Room Code</th>
               <th className="py-4">Action</th>
             </tr>
           </thead>
@@ -50,18 +50,18 @@ function ViewBed() {
             {isLoading || (isFetching && <RoomsLoading />)}
             {data &&
               !isFetching &&
-              data.map((room) => (
+              data.map((bed) => (
                 <tr key="">
-                  <td className="text-center py-4">{room.room_id}</td>
-                  <td className="text-center py-4">{room.room_code}</td>
-                  <td className="text-center py-4">{room.branch_name}</td>
-                  <td className="text-center py-4">{room.room_id}</td>
+                  <td className="text-center py-4">{bed.bed_id}</td>
+                  <td className="text-center py-4">{bed.bed_code}</td>
+                  <td className="text-center py-4">{bed.branch_name}</td>
+                  <td className="text-center py-4">{bed.room_code}</td>
 
                   <td className="text-center py-4">
-                    <Link href={"/dashboard/rooms/edit-room/" + room.room_id}>
+                    <Link href={"/dashboard/beds/edit-bed/" + bed.bed_id}>
                       <i className="fa-solid fa-pen-to-square pr-2 text-green-600"></i>
                     </Link>
-                    | <i className="fa-solid fa-trash pl-2 text-red-600" onClick={() => handleDelete(room.room_id)}></i>
+                    | <i className="fa-solid fa-trash pl-2 text-red-600" onClick={() => handleDelete(bed.bed_id)}></i>
                   </td>
                 </tr>
               ))}
