@@ -73,7 +73,7 @@ function Sidebar() {
               <i className="fa-solid fa-industry inline-block pr-2"></i> Branches
             </div>
             <div className="collapse-content bg-gray-200 space-y-5 pt-6 px-0 text-black">
-              <Link href="/dashboard/branches/view-branches" className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link">
+              <Link href="/dashboard/branches/add-branch" className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link">
                 <i className="fa-solid fa-plus inline-block pr-2"></i> Add Branch
               </Link>
               <Link href="/dashboard/branches/view-branches" className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link">
