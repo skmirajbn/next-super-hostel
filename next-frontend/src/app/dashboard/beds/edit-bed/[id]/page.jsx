@@ -7,11 +7,12 @@ import useApiCall from "@/hooks/useApiCall";
 import { useQuery } from "@tanstack/react-query";
 import { useFormik } from "formik";
 
-function AddBed() {
+function AddBed({ params }) {
   const { data, isLoading, refetch, isFetching } = useQuery({
     queryKey: ["viewRoom"],
     queryFn: () => getDataApi(environment.apiUrl + "rooms/getAllRooms.php", {}),
   });
+
   const {
     data: dataBedType,
     isLoading: isBedTypeLoading,
@@ -20,20 +21,30 @@ function AddBed() {
     queryKey: ["bedType"],
     queryFn: () => getDataApi(environment.apiUrl + "bedType/getAllBedType.php", {}),
   });
+
+  let id = params.id;
+  let fromIdData = new FormData();
+  fromIdData.append("id", id);
+  const { data: dataSingleBed, isSingleBedLoading } = useQuery({
+    queryKey: ["singleBed", params.id],
+    queryFn: () => getDataApi(environment.apiUrl + "beds/getSingleBed.php", fromIdData),
+  });
   const { resData, apiCall } = useApiCall();
   const { values, errors, touched, handleBlur, handleChange, handleSubmit, isSubmitting } = useFormik({
     initialValues: {
-      roomId: "",
-      bedTypeId: "",
-      bedCode: "",
+      roomId: dataSingleBed?.room_id,
+      bedTypeId: dataSingleBed?.bed_type_id,
+      bedCode: dataSingleBed?.bed_code,
     },
+    enableReinitialize: true,
     onSubmit: async (values, action) => {
-      let url = environment.apiUrl + "beds/createBed.php";
+      let url = environment.apiUrl + "beds/updateBed.php";
       console.log(values);
       let data = new FormData();
       Object.keys(values).forEach((key) => {
         data.append(key, values[key]);
       });
+      data.append("id", params.id);
       await apiCall(url, data);
       console.log(data);
       console.log(resData);
@@ -82,7 +93,7 @@ function AddBed() {
         <h2 className="text-center text-2xl text-green-700"> </h2>
         <h2 className="text-center text-2xl text-green-700"></h2>
         <button type="submit" className="block mx-auto bg-blue-500 text-white py-2 px-4 rounded-md">
-          <i className="fa-solid fa-plus"></i> Add Room
+          <i class="fa-solid fa-pen-to-square"></i> Update Room
         </button>
         {isSubmitting && <h3 className="text-green-600 text-center">Submitting...</h3>}
         <h3 className="text-green-600 text-center">{resData}</h3>

@@ -15,27 +15,25 @@ function isTokenValid($token) {
     } catch (Exception $e) {
         return false;
     }
-
 }
 
 if (isset($_Headers['Token'])) {
     $token = $_Headers['Token'];
     if (isTokenValid($token)) {
         require_once('./../../database/config.php');
-        if (isset($_POST['roomCode']) && isset($_POST['branchId']) && isset($_POST['id'])) {
+        if (isset($_POST['id'])) {
             $id = $_POST['id'];
-            $branchId = $_POST['branchId'];
-            $roomCode = $_POST['roomCode'];
-            $sql = "UPDATE rooms SET room_code ='$roomCode', branch_id= $branchId WHERE room_id = $id";
-            $query = $con->query($sql);
-            if ($query) {
-                echo "Room Updated successfully";
-            }
+            $sql = "SELECT * FROM beds WHERE bed_id = $id";
+            $result = $con->query($sql);
+            $data = $result->fetch_assoc();
+            $data = json_encode($data);
+            echo $data;
         } else {
-            echo "Please input all the required field";
+            echo "Id is not provided";
         }
+
     } else {
-        echo "Invalid Token";
+        echo "Invalid token";
     }
 } else {
     echo "No Token";

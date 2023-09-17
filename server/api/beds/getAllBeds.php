@@ -29,6 +29,7 @@ if (isset($_Headers['Token'])) {
         bt.bed_type_description AS bed_type_description,
         bt.bed_type_button AS bed_type_button,
         bt.bed_type_image AS bed_type_image,
+        bt.bed_type_name AS bed_type_name,
         b.bed_code AS bed_code,
         br.branch_name AS branch_name,
         br.branch_address AS branch_address

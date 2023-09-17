@@ -41,6 +41,7 @@ function ViewBed() {
             <tr>
               <th className="py-4 px-3">ID</th>
               <th className="py-4">Bed code</th>
+              <th className="py-4">Bed Type</th>
               <th className="py-4">Branch Name</th>
               <th className="py-4">Room Code</th>
               <th className="py-4">Action</th>
@@ -54,6 +55,7 @@ function ViewBed() {
                 <tr key="">
                   <td className="text-center py-4">{bed.bed_id}</td>
                   <td className="text-center py-4">{bed.bed_code}</td>
+                  <td className="text-center py-4">{bed.bed_type_name}</td>
                   <td className="text-center py-4">{bed.branch_name}</td>
                   <td className="text-center py-4">{bed.room_code}</td>
 

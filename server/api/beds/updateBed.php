@@ -21,15 +21,15 @@ function isTokenValid($token) {
 if (isset($_Headers['Token'])) {
     $token = $_Headers['Token'];
     if (isTokenValid($token)) {
-        require_once('./../../database/config.php');
-        if (isset($_POST['roomCode']) && isset($_POST['branchId']) && isset($_POST['id'])) {
+        if (isset($_POST['roomId']) && isset($_POST['bedTypeId']) && isset($_POST['bedCode']) && isset($_POST['id'])) {
+            $roomId = $_POST['roomId'];
+            $bedTypeId = $_POST['bedTypeId'];
+            $bedCode = $_POST['bedCode'];
             $id = $_POST['id'];
-            $branchId = $_POST['branchId'];
-            $roomCode = $_POST['roomCode'];
-            $sql = "UPDATE rooms SET room_code ='$roomCode', branch_id= $branchId WHERE room_id = $id";
+            $sql = "UPDATE beds SET bed_code ='$bedCode' , room_id = $roomId, bed_type_id =  $bedTypeId WHERE bed_id = $id";
             $query = $con->query($sql);
             if ($query) {
-                echo "Room Updated successfully";
+                echo "Bed Updated Successfully";
             }
         } else {
             echo "Please input all the required field";
