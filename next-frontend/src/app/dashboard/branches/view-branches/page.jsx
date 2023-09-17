@@ -30,7 +30,7 @@ function ViewBranch() {
     <div className="space-y-4 bg-white my-6 py-6 px-12 rounded-md shadow-lg">
       <div className="flex justify-between">
         <h2 className="text-lg font-bold text-blue-950">
-          <i class="fa-solid fa-people-roof"></i> All Rooms
+          <i class="fa-solid fa-code-branch"></i> All Branches
         </h2>
       </div>
 
@@ -55,7 +55,8 @@ function ViewBranch() {
                   <td className="text-center py-4">{branch.branch_name}</td>
                   <td className="text-center py-4">{branch.branch_address}</td>
                   <td className="text-center py-4">
-                    <img src={environment.imageUrl + branch.image} alt="Branch Image" />
+                    {branch.branh_iamge && <img src={environment.imageUrl + branch.image} alt="Branch Image" />}
+                    {!branch.branch_image && <i className="fa-solid fa-tree-city"></i>}
                   </td>
 
                   <td className="text-center py-4">
