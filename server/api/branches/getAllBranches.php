@@ -21,7 +21,7 @@ function isTokenValid($token) {
 if (isset($_Headers['Token'])) {
     $token = $_Headers['Token'];
     if (isTokenValid($token)) {
-        $sql = "SELECT * FROM branches ORDER BY bed_type_id DESC";
+        $sql = "SELECT * FROM branches ORDER BY branch_id DESC";
         $result = $con->query($sql);
         $dataArr = [];
         while ($data = $result->fetch_assoc()) {

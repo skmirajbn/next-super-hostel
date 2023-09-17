@@ -73,13 +73,13 @@ function Sidebar() {
               <i className="fa-solid fa-industry inline-block pr-2"></i> Branches
             </div>
             <div className="collapse-content bg-gray-200 space-y-5 pt-6 px-0 text-black">
-              <a className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link" href="#">
+              <Link href="/dashboard/branches/view-branches" className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link">
                 <i className="fa-solid fa-plus inline-block pr-2"></i> Add Branch
-              </a>
-              <a className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link" href="#">
+              </Link>
+              <Link href="/dashboard/branches/view-branches" className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link">
                 <i className="fa-solid fa-eye inline-block pr-2"></i> View Branches
-              </a>
-              <a className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link" href="#">
+              </Link>
+              <a className="block hover:bg-gray-300 px-12 py-4 m-0 ac-link">
                 <i className="fa-solid fa-trash-can-arrow-up inline-block pr-2"></i> Restore Branch
               </a>
             </div>
