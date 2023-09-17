@@ -30,7 +30,7 @@ function AddBranch() {
   return (
     <div className="text-gray-700 space-y-6 lg:px-20">
       <h3 className="text-2xl font-medium">
-        Branch Add <i className="fa-solid fa-person-shelter"></i>
+        Branch Add <i className="fa-solid fa-code-branch"></i>
       </h3>
       <form className="space-y-10" onSubmit={handleSubmit}>
         <div className="flex flex-col space-y-6">
