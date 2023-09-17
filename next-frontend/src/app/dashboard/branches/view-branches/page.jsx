@@ -22,12 +22,13 @@ function ViewBranch() {
     setIsFetching(true);
     let formData = new FormData();
     formData.append("id", id);
-    await apiCall(environment.apiUrl + "rooms/deleteRoom.php", formData);
+    await apiCall(environment.apiUrl + "branches/deleteBranch.php", formData);
     await refetch();
     setIsFetching(false);
   };
   return (
     <div className="space-y-4 bg-white my-6 py-6 px-12 rounded-md shadow-lg">
+      {isFetching && <div>Loading....</div>}
       <div className="flex justify-between">
         <h2 className="text-lg font-bold text-blue-950">
           <i class="fa-solid fa-code-branch"></i> All Branches
@@ -46,9 +47,8 @@ function ViewBranch() {
             </tr>
           </thead>
           <tbody>
-            {isLoading || (isFetching && null)}
+            {isLoading}
             {data &&
-              !isFetching &&
               data.map((branch) => (
                 <tr key="">
                   <td className="text-center py-4">{branch.branch_id}</td>
