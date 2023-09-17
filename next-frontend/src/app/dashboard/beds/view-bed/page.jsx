@@ -31,7 +31,7 @@ function ViewBed() {
     <div className="space-y-4 bg-white my-6 py-6 px-12 rounded-md shadow-lg">
       <div className="flex justify-between">
         <h2 className="text-lg font-bold text-blue-950">
-          <i class="fa-solid fa-people-roof"></i> All Rooms
+          <i class="fa-solid fa-bed"></i> All Beds
         </h2>
       </div>
 
