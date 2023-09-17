@@ -15,8 +15,7 @@ function AddBranch() {
       branchId: "",
     },
     onSubmit: async (values, action) => {
-      let url = environment.apiUrl + "rooms/createRoom.php";
-      console.log(values);
+      let url = environment.apiUrl + "branches/createBranch.php";
       let data = new FormData();
       Object.keys(values).forEach((key) => {
         data.append(key, values[key]);
@@ -24,6 +23,7 @@ function AddBranch() {
       if (imageInput.current.files[0]) {
         data.append("photo", imageInput.current.files[0]);
       }
+      console.log(data);
       await apiCall(url, data);
       console.log(data);
       console.log(resData);
@@ -37,7 +37,6 @@ function AddBranch() {
     let reader = new FileReader();
     reader.onload = (e) => {
       setImgUrl(e.target.result);
-      console.log(e.target.result);
     };
     reader.readAsDataURL(file);
   };
