@@ -1,4 +1,13 @@
+"use client";
+import environment from "@/environment/environment";
+import getDataApi from "@/hooks/getDataApi";
+import { useQuery } from "@tanstack/react-query";
+
 function DashboardSummary() {
+  const { data } = useQuery({
+    queryKey: ["summary"],
+    queryFn: () => getDataApi(environment.apiUrl + "summary/totals.php", {}),
+  });
   return (
     <section id="web-job-category" className="">
       <div className="space-y-4 bg-white my-6 py-6 rounded-md shadow-lg">
@@ -11,27 +20,27 @@ function DashboardSummary() {
 
           <div className="grid grid-cols-4 gap-3 text-gray-700 gap-y-3">
             <div className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-center py-12 px-5 rounded-md shadow-lg shadow-blue-700">
-              <h5 className="text-2xl">Seats</h5>
+              <h5 className="text-2xl">Beds</h5>
               <span className="text-xl">
-                <i className="fa-solid fa-briefcase"></i> 500
+                <i className="fa-solid fa-briefcase"></i> {data?.total_beds}
               </span>
             </div>
             <div className="bg-gradient-to-r from-cyan-400 to-cyan-500 text-white text-center py-12 px-5 rounded-md shadow-lg shadow-cyan-500">
               <h5 className="text-2xl">Rooms</h5>
               <span className="text-xl">
-                <i className="fa-solid fa-user-group"></i> 800
+                <i className="fa-solid fa-user-group"></i> {data?.total_rooms}
               </span>
             </div>
             <div className="bg-gradient-to-r from-amber-300 to-amber-400 text-white text-center py-12 px-5 rounded-md shadow-lg shadow-amber-500">
               <h5 className="text-2xl">Members</h5>
               <span className="text-xl">
-                <i className="fa-solid fa-handshake-simple"></i> 1520
+                <i className="fa-solid fa-handshake-simple"></i> {data?.total_users}
               </span>
             </div>
             <div className="bg-gradient-to-r from-pink-300 to-pink-400 text-white text-center py-12 px-5 rounded-md shadow-lg shadow-pink-500">
               <h5 className="text-2xl">Branches</h5>
               <span className="text-xl">
-                <i className="fa-solid fa-folder-tree"></i> 11
+                <i className="fa-solid fa-folder-tree"></i> {data?.total_branches}
               </span>
             </div>
           </div>

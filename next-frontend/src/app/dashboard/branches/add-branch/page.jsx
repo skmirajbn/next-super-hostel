@@ -67,7 +67,7 @@ function AddBranch() {
         <h2 className="text-center text-2xl text-green-700"> </h2>
         <h2 className="text-center text-2xl text-green-700"></h2>
         <button type="submit" className="block mx-auto bg-blue-500 text-white py-2 px-4 rounded-md">
-          <i className="fa-solid fa-plus"></i> Add Room
+          <i className="fa-solid fa-plus"></i> Add Branch
         </button>
         {isSubmitting && <h3 className="text-green-600 text-center">Submitting...</h3>}
         <h3 className="text-green-600 text-center">{resData}</h3>

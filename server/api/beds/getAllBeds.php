@@ -31,6 +31,7 @@ if (isset($_Headers['Token'])) {
         bt.bed_type_image AS bed_type_image,
         bt.bed_type_name AS bed_type_name,
         b.bed_code AS bed_code,
+        b.is_bed_booked AS is_bed_booked,
         br.branch_name AS branch_name,
         br.branch_address AS branch_address
     FROM

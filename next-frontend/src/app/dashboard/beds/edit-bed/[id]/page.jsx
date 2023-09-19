@@ -35,6 +35,7 @@ function AddBed({ params }) {
       roomId: dataSingleBed?.room_id,
       bedTypeId: dataSingleBed?.bed_type_id,
       bedCode: dataSingleBed?.bed_code,
+      isBedBooked: dataSingleBed?.is_bed_booked,
     },
     enableReinitialize: true,
     onSubmit: async (values, action) => {
@@ -89,11 +90,19 @@ function AddBed({ params }) {
             {touched.bedCode && <div className="text-red-600 italic">{errors.bedCode}</div>}
             <input className="border-2 border-blue-200 px-2 rounded-md py-2" style={errors.bedCode && touched.bedCode && { border: "1px solid red" }} type="text" placeholder="Enter Bed Code" name="bedCode" onChange={handleChange} onBlur={handleBlur} value={values.bedCode} />
           </div>
+          <div className="flex flex-col space-y-2">
+            <label className="text-lg">Bed Status :</label>
+            <select className="text-lg border-2 border-blue-200 py-2 rounded-md px-2" name="isBedBooked" id="" value={values.isBedBooked} onChange={handleChange}>
+              <option value="">Select Status</option>
+              <option value="0">Available</option>
+              <option value="1">Booked</option>
+            </select>
+          </div>
         </div>
         <h2 className="text-center text-2xl text-green-700"> </h2>
         <h2 className="text-center text-2xl text-green-700"></h2>
         <button type="submit" className="block mx-auto bg-blue-500 text-white py-2 px-4 rounded-md">
-          <i class="fa-solid fa-pen-to-square"></i> Update Room
+          <i class="fa-solid fa-pen-to-square"></i> Update Bed
         </button>
         {isSubmitting && <h3 className="text-green-600 text-center">Submitting...</h3>}
         <h3 className="text-green-600 text-center">{resData}</h3>

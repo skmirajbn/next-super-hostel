@@ -44,6 +44,7 @@ function ViewBed() {
               <th className="py-4">Bed Type</th>
               <th className="py-4">Branch Name</th>
               <th className="py-4">Room Code</th>
+              <th className="py-4">Status</th>
               <th className="py-4">Action</th>
             </tr>
           </thead>
@@ -58,6 +59,9 @@ function ViewBed() {
                   <td className="text-center py-4">{bed.bed_type_name}</td>
                   <td className="text-center py-4">{bed.branch_name}</td>
                   <td className="text-center py-4">{bed.room_code}</td>
+                  <td className="text-center py-4 bg-green-500 text-white" style={bed.is_bed_booked == 1 ? { backgroundColor: "red" } : null}>
+                    {bed.is_bed_booked == 0 ? "Available" : "Booked"}
+                  </td>
 
                   <td className="text-center py-4">
                     <Link href={"/dashboard/beds/edit-bed/" + bed.bed_id}>

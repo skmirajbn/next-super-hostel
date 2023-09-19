@@ -11,6 +11,8 @@ function Header() {
   const router = useRouter();
   const logOut = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("roleId");
     router.push("/login");
   };
   const [token, setToken] = useState();
@@ -19,7 +21,6 @@ function Header() {
     setToken(localStorage.getItem("token"));
   });
   const path = usePathname();
-  console.log("pathname is: " + path);
   const transition = {
     transitionTimingFunction: "transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);",
     transitionDuration: "200ms",
@@ -34,7 +35,7 @@ function Header() {
             <Link href="">
               <i className="fa-solid fa-hotel text-3xl mr-3"></i>
             </Link>
-            <Link href="">Super Hostel BD</Link>
+            <Link href="/">Super Hostel BD</Link>
           </div>
           <div className="space-x-4">
             <Link href="/" className={path === "/" ? active : ""} style={transition}>
@@ -43,18 +44,22 @@ function Header() {
             <Link href="/about" className={path === "/about" ? active : ""} style={transition}>
               About Us
             </Link>
-            <Link href="/social" className={path === "/social" ? active : ""} style={transition}>
-              Social
-            </Link>
-            <Link href="/blog" className={path === "/blog" ? active : ""} style={transition}>
+            {!token && (
+              <Link href="/social" className={path === "/social" ? active : ""} style={transition}>
+                Social
+              </Link>
+            )}
+            {/* <Link href="/blog" className={path === "/blog" ? active : ""} style={transition}>
               Blog
-            </Link>
+            </Link> */}
             <Link href="/contact" className={path === "/contact" ? active : ""} style={transition}>
               Contact
             </Link>
-            <Link href="/team" className={path === "/team" ? active : ""} style={transition}>
-              Our Team
-            </Link>
+            {!token && (
+              <Link href="/team" className={path === "/team" ? active : ""} style={transition}>
+                Our Team
+              </Link>
+            )}
             {!token && (
               <Link href="/login" className={path === "/login" ? active : inActive} style={transition}>
                 Login <i class="fa-solid fa-chevron-right"></i>
@@ -66,6 +71,13 @@ function Header() {
                   <i className="fa-solid fa-right-from-bracket"></i> Logout
                 </span>
               </span>
+            )}
+            {token && (
+              <Link href="/dashboard" className="inline-block bg-slate-500 px-4 rounded-full leading-8 cursor-pointer">
+                <span style={transition}>
+                  <i class="fa-solid fa-ticket"></i> Dashboard
+                </span>
+              </Link>
             )}
             <div className="inline-block">
               <MotionWrapScale>

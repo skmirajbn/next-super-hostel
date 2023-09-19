@@ -40,8 +40,11 @@ function AddRoom() {
             <select className="text-lg" name="branchId" onChange={handleChange} onBlur={handleBlur} value={values.branchId}>
               <option value="">Select Role</option>
               <option value="1">Dhanmondi</option>
-              <option value="2">Mohammadpur</option>
-              <option value="3">Motijheel</option>
+              <option value="11">Mohammadpur</option>
+              <option value="12">Motijheel</option>
+              <option value="13">Uttara</option>
+              <option value="14">Banani</option>
+              <option value="15">Gulshan</option>
             </select>
           </div>
           <div className="flex flex-col space-y-2">

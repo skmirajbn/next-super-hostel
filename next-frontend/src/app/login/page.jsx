@@ -6,6 +6,7 @@ import environment from "@/environment/environment";
 import useApiCall from "@/hooks/useApiCall";
 import loginSchema from "@/schemas/loginSchema";
 import { useFormik } from "formik";
+import jwtDecode from "jwt-decode";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -39,6 +40,11 @@ export default function Login() {
       } else {
         setIsLogFailed(false);
         localStorage.setItem("token", resData.token);
+        let decoded_token = jwtDecode(resData.token);
+        let userId = decoded_token["user_id"];
+        let roleId = decoded_token["role_id"];
+        localStorage.setItem("userId", userId);
+        localStorage.setItem("roleId", roleId);
         router.push("/dashboard");
         console.log("login success");
       }
