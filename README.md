@@ -1,6 +1,6 @@
-**Project Name:** Super Hostel BD    https://nextsuperhostelidb.skmiraj.online/
-**Project Url:** Will available soon...
-**Pakages Used:**
+**Project Name:** Super Hostel BD    
+**Project Url:** https://nextsuperhostelidb.skmiraj.online/
+**Packages Used:**
 
 - Tailwind CSS
 - React Router
